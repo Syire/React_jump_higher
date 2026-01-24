@@ -1,10 +1,12 @@
 import GameCanvas from "../components/GameCanvas";
+import "./css/GamePage.css";
 
 export default function GamePage() {
     return (
-        <div>
-            <GameCanvas />
-            <p>Controlli: &larr; &rarr;</p>
+        <div className="gamepage-center">
+            <div className="gamepage-box">
+                <GameCanvas />
+            </div>
         </div>
     );
-} 
+}

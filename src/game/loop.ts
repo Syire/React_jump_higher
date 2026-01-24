@@ -60,16 +60,19 @@ export function update(world: World, input: Input, dt: number) {
     if (p.vel.y > 0) {
         const playerBottomPrev = prevY + p.h;
         const playerBottomNow = p.pos.y + p.h;
-
+        let landed = false;
+        const TOLLERANZA = 6; // pixel di tolleranza per evitare "salto nel vuoto"
         for (let i = 0; i < world.platforms.length; ++i) {
             const plat = world.platforms[i];
             const platTop = plat.pos.y;
             const overlapX =
                 p.pos.x + p.w > plat.pos.x && p.pos.x < plat.pos.x + plat.w;
+            // Il player deve scendere e toccare la piattaforma dall'alto, con tolleranza
             const crossedTop =
-                playerBottomPrev <= platTop && playerBottomNow >= platTop;
-
+                playerBottomPrev <= platTop && playerBottomNow >= platTop &&
+                Math.abs(playerBottomNow - platTop) < TOLLERANZA;
             if (overlapX && crossedTop) {
+                landed = true;
                 if (plat.type === "broken") {
                     // Primo salto: fa saltare e poi sparisce subito
                     p.pos.y = platTop - p.h;
@@ -89,6 +92,8 @@ export function update(world: World, input: Input, dt: number) {
                 }
             }
         }
+        // Se non ha toccato nessuna piattaforma, continua a cadere (niente salto nel vuoto)
+        // nessuna azione: il player continua a cadere
     }
 
     // scroll verticale del mondo (se il player supera una certa linea)
@@ -117,9 +122,11 @@ export function update(world: World, input: Input, dt: number) {
     world.platforms = world.platforms.filter((pl) => pl.pos.y < bottomLimit);
 
     while (world.platforms.length < PLATFORM_MIN_ON_SCREEN) {
-        const topY = Math.min(...world.platforms.map((pl) => pl.pos.y));
+        // Trova la piattaforma più in alto
         const topPlat = world.platforms.reduce((a, b) => (a.pos.y < b.pos.y ? a : b));
-        const newY = topY - randInt(GAP_Y_MIN, GAP_Y_MAX);
+        let newY = topPlat.pos.y - randInt(GAP_Y_MIN, GAP_Y_MAX);
+        // Non generare troppo sopra il bordo superiore
+        if (newY < -GAME_H * 0.2) newY = -GAME_H * 0.2;
         world.platforms.push(makePlatform(newY, topPlat?.pos.x, world.score));
     }
 }

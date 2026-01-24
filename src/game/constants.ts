@@ -1,5 +1,5 @@
-export const GAME_W = 360;
-export const GAME_H = 640;
+export const GAME_W = 540;
+export const GAME_H = 960;
 
 export const PLATFORM_W = 70;
 export const PLATFORM_H = 28;
@@ -16,4 +16,4 @@ export const SIDE_MARGIN = 10;
 // gestione fisica del player
 export const GRAVITY = 1800;     
 export const MOVE_SPEED = 420;   
-export const JUMP_VY = -900; 
+export const JUMP_VY = -900;

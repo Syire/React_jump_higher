@@ -14,7 +14,7 @@ export type Platform = {
   w: number;
   h: number;
   type: PlatformType;
-  used?: boolean; // solo per broken
+  used?: boolean; // solo per le platform broken
 };
 
 export type GameState = "menu" | "playing" | "gameover";

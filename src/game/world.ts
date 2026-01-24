@@ -19,7 +19,7 @@ function clamp(v: number, min: number, max: number) {
 }
 
 function randomPlatformType(score = 0): "base" | "jump" | "broken" {
-  // Scala la difficoltà: più score, più jump/broken
+  // Scala la difficoltà con il punteggio
   // base: dal 70% al 40%, jump: dal 15% al 25%, broken: dal 15% al 35%
   const t = Math.min(score / 2000, 1); // t va da 0 a 1
   const baseProb = 0.7 - 0.3 * t;
@@ -63,11 +63,11 @@ export function createWorld(): World {
     type: "base",
   });
 
-  // riempimento iniziale piattaforme
+  // riempimento iniziale piattaforme: copri tutto lo schermo
   let y = startY;
   let prevX = startX;
-
-  while (platforms.length < PLATFORM_MIN_ON_SCREEN) {
+  // Genera piattaforme finché la più alta non supera la parte alta del canvas
+  while (y > -GAME_H * 0.1) {
     y -= randInt(GAP_Y_MIN, GAP_Y_MAX);
     const p = makePlatform(y, prevX);
     prevX = p.pos.x;

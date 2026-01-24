@@ -10,9 +10,31 @@ import { getPlayerName } from "../utils/playerName";
 
 export default function GameCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const worldRef = useRef(createWorld());
   const [gameOver, setGameOver] = useState(false);
+  const [canvasSize, setCanvasSize] = useState({ width: GAME_W, height: GAME_H });
   const navigate = useNavigate();
+
+  // Responsive resize
+  useEffect(() => {
+    function updateSize() {
+      if (!containerRef.current) return;
+      const parentW = containerRef.current.offsetWidth;
+      const parentH = containerRef.current.offsetHeight;
+      // Mantieni rapporto 360:640
+      let width = parentW;
+      let height = (width * GAME_H) / GAME_W;
+      if (height > parentH) {
+        height = parentH;
+        width = (height * GAME_W) / GAME_H;
+      }
+      setCanvasSize({ width, height });
+    }
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -66,24 +88,25 @@ export default function GameCanvas() {
     };
   }, []);
 
-  // 🔁 restart
+  // restart
   function handleRestart() {
     worldRef.current = createWorld();
     setGameOver(false);
   }
 
   return (
-    <div style={{ position: "relative", width: GAME_W }}>
+    <div ref={containerRef} style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <canvas
         ref={canvasRef}
         style={{
           border: "1px solid #ccc",
-          width: GAME_W,
-          height: GAME_H,
+          width: canvasSize.width,
+          height: canvasSize.height,
           display: "block",
+          background: "#f8f8f8",
+          borderRadius: 12,
         }}
       />
-
       {gameOver && (
         <div
           style={{
@@ -99,7 +122,6 @@ export default function GameCanvas() {
           }}
         >
           <h2>Game Over</h2>
-
           <button onClick={handleRestart}>Restart</button>
           <button onClick={() => navigate("/")}>Home</button>
         </div>
