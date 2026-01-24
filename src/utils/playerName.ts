@@ -1,11 +1,11 @@
-const STORAGE_KEY = "doodle_player_name";
+const STORAGE_KEY = "tony_player_name";
 
 const ADJECTIVES = [
-  "Crazy", "Flying", "Happy", "Sleepy", "Ninja", "Lucky", "Fast"
+  "Elegante", "Sborone", "Spaccone", "Figo", "Sfrontato", "Chic", "Tamarro", "Carismatico", "Irriverente", "Sorridente", "Abbronzato", "Sicuro", "Esagerato", "Simpatichissimo", "Inconfondibile"
 ];
 
 const NOUNS = [
-  "Frog", "Jumper", "Alien", "Cat", "Blob", "Duck", "Hero"
+  "Rayban", "Cravatta", "Giacca", "Pitony", "Tony", "Occhialone", "ScarpaLucida", "CapelloFissato", "SelfieKing", "MemeBoss", "Catenone", "Sorrisone", "Briatore", "CiaoBellezza", "SignorPitony"
 ];
 
 function randomItem(arr: string[]) {

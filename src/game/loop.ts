@@ -1,4 +1,5 @@
 import { World } from "./types";
+import { makePlatform } from "./world";
 import {
     GRAVITY,
     MOVE_SPEED,
@@ -60,19 +61,32 @@ export function update(world: World, input: Input, dt: number) {
         const playerBottomPrev = prevY + p.h;
         const playerBottomNow = p.pos.y + p.h;
 
-        for (const plat of world.platforms) {
+        for (let i = 0; i < world.platforms.length; ++i) {
+            const plat = world.platforms[i];
             const platTop = plat.pos.y;
-
             const overlapX =
                 p.pos.x + p.w > plat.pos.x && p.pos.x < plat.pos.x + plat.w;
-
             const crossedTop =
                 playerBottomPrev <= platTop && playerBottomNow >= platTop;
 
             if (overlapX && crossedTop) {
-                p.pos.y = platTop - p.h;
-                p.vel.y = JUMP_VY;
-                break;
+                if (plat.type === "broken") {
+                    // Primo salto: fa saltare e poi sparisce subito
+                    p.pos.y = platTop - p.h;
+                    p.vel.y = JUMP_VY;
+                    world.platforms.splice(i, 1);
+                    break;
+                } else if (plat.type === "jump") {
+                    // piattaforma jump: salto più alto
+                    p.pos.y = platTop - p.h;
+                    p.vel.y = JUMP_VY * 1.4;
+                    break;
+                } else {
+                    // piattaforma base
+                    p.pos.y = platTop - p.h;
+                    p.vel.y = JUMP_VY;
+                    break;
+                }
             }
         }
     }
@@ -106,7 +120,6 @@ export function update(world: World, input: Input, dt: number) {
         const topY = Math.min(...world.platforms.map((pl) => pl.pos.y));
         const topPlat = world.platforms.reduce((a, b) => (a.pos.y < b.pos.y ? a : b));
         const newY = topY - randInt(GAP_Y_MIN, GAP_Y_MAX);
-
-        world.platforms.push(spawnPlatform(newY, topPlat?.pos.x, world.width));
+        world.platforms.push(makePlatform(newY, topPlat?.pos.x, world.score));
     }
 }

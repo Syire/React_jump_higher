@@ -7,11 +7,14 @@ export type Player = {
   h: number;
 };
 
+export type PlatformType = "base" | "jump" | "broken";
 export type Platform = {
   id: string;
   pos: Vec2;
   w: number;
   h: number;
+  type: PlatformType;
+  used?: boolean; // solo per broken
 };
 
 export type GameState = "menu" | "playing" | "gameover";

@@ -2,7 +2,7 @@ export const GAME_W = 360;
 export const GAME_H = 640;
 
 export const PLATFORM_W = 70;
-export const PLATFORM_H = 14;
+export const PLATFORM_H = 28;
 
 export const PLATFORM_MIN_ON_SCREEN = 10;
 
