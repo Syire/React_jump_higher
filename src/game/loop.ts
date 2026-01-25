@@ -75,7 +75,7 @@ export function update(world: World, input: Input, dt: number) {
         const playerBottomPrev = prevY + p.h;
         const playerBottomNow = p.pos.y + p.h;
         let landed = false;
-        const TOLLERANZA = 6; // pixel di tolleranza per evitare "salto nel vuoto"
+        const TOLLERANZA = 8; // pixel di tolleranza per evitare "salto nel vuoto"
         for (let i = 0; i < world.platforms.length; ++i) {
             const plat = world.platforms[i];
             const platTop = plat.pos.y;
