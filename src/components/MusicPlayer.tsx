@@ -1,7 +1,5 @@
 
 
-// Playlist Tony Pitony su SoundCloud (embed visibile, autoplay e loop non gestibili via API)
-
 // TypeScript: declare SC on window
 declare global {
     interface Window {
@@ -26,11 +24,11 @@ interface Props {
 
 
 const MusicPlayer: React.FC<Props> = ({ musicOn }) => {
-    const [current, setCurrent] = useState(0);
+    const current = 0;
     const iframeRef = React.useRef<HTMLIFrameElement>(null);
     const widgetRef = React.useRef<any>(null);
 
-    // Setup widget and FINISH event
+    // Setup widget and FINISH event: loop sempre la stessa canzone
     React.useEffect(() => {
         if (!musicOn) return;
         const iframe = iframeRef.current;
@@ -40,7 +38,8 @@ const MusicPlayer: React.FC<Props> = ({ musicOn }) => {
             const widget = window.SC.Widget(iframe);
             widgetRef.current = widget;
             widget.bind(window.SC.Widget.Events.FINISH, () => {
-                setCurrent((prev) => (prev + 1) % playlist.length);
+                widget.seekTo(0);
+                widget.play();
             });
         }
         // @ts-ignore
@@ -52,22 +51,7 @@ const MusicPlayer: React.FC<Props> = ({ musicOn }) => {
         } else {
             setupWidget();
         }
-    }, [musicOn, current]);
-
-
-    React.useEffect(() => {
-        if (!musicOn) return;
-        let tries = 0;
-        function tryLoad() {
-            if (widgetRef.current && widgetRef.current.load) {
-                widgetRef.current.load(playlist[current].url, { auto_play: true });
-            } else if (tries < 10) {
-                tries++;
-                setTimeout(tryLoad, 120);
-            }
-        }
-        tryLoad();
-    }, [current, musicOn]);
+    }, [musicOn]);
 
     if (!musicOn) return null;
 
@@ -91,28 +75,12 @@ const MusicPlayer: React.FC<Props> = ({ musicOn }) => {
             gap: 16,
         }}>
             <span>
-                {playlist[current].title} <span style={{ color: '#b97a56', fontWeight: 400 }}>— {playlist[current].author}</span>
+                {playlist[0].title} <span style={{ color: '#b97a56', fontWeight: 400 }}>— {playlist[0].author}</span>
             </span>
-            <button
-                onClick={() => setCurrent((prev) => (prev + 1) % playlist.length)}
-                style={{
-                    background: '#b97a56',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: 20,
-                    padding: '4px 16px',
-                    fontSize: 15,
-                    cursor: 'pointer',
-                    marginLeft: 8,
-                    boxShadow: '0 1px 4px #0001',
-                    transition: 'background 0.1s',
-                }}
-                title="Prossima canzone"
-            >Avanti</button>
             <iframe
                 ref={iframeRef}
-                title={playlist[current].title}
-                src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(playlist[current].url)}&color=%23b97a56&auto_play=true&show_comments=false&show_user=false&show_reposts=false&visual=false`}
+                title={playlist[0].title}
+                src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(playlist[0].url)}&color=%23b97a56&auto_play=true&show_comments=false&show_user=false&show_reposts=false&visual=false`}
                 width="320"
                 height="60"
                 style={{ border: 'none', marginLeft: 12 }}
