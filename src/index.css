@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  background: #ffa751;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+img,
+canvas,
+iframe {
+  max-width: 100%;
+}

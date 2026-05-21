@@ -95,18 +95,16 @@ export default function GameCanvas() {
   }
 
   return (
-    <div ref={containerRef} style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div ref={containerRef} className="game-canvas-wrap">
       <canvas
         ref={canvasRef}
+        className="game-canvas"
         style={{
-          border: "1px solid #ccc",
-          width: canvasSize.width,
-          height: canvasSize.height,
-          display: "block",
-          background: "#f8f8f8",
-          borderRadius: 12,
+          width: `${canvasSize.width}px`,
+          height: `${canvasSize.height}px`,
         }}
       />
+
       {gameOver && (
         <div className="gameover-buttons">
           <button onClick={handleRestart}>Riprova</button>

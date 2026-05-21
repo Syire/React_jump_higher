@@ -36,20 +36,7 @@ export default function GamePage() {
         <div className="gamepage-center">
             <div className="gamepage-box">
                 {!sensorsEnabled && (
-                    <button
-                        style={{
-                            margin: "16px auto",
-                            display: "block",
-                            padding: "10px 20px",
-                            fontSize: "1.1em",
-                            borderRadius: "8px",
-                            border: "none",
-                            background: "#f7b733",
-                            color: "#fff",
-                            cursor: "pointer",
-                        }}
-                        onClick={handleEnableSensors}
-                    >
+                    <button className="sensor-button" onClick={handleEnableSensors}>
                         Abilita sensori movimento
                     </button>
                 )}

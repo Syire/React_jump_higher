@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  background: rgba(255,251,231,0.95);
+  background: rgba(255, 251, 231, 0.95);
   z-index: 1000;
   text-align: center;
   padding: 8px 0 4px 0;
@@ -17,23 +17,28 @@
   align-items: center;
   gap: 6px;
 }
+
 .music-player-title {
   font-size: 1.08rem;
   margin-bottom: 2px;
   word-break: break-word;
 }
+
 @media (max-width: 600px) {
   .music-player-responsive {
     font-size: 0.98rem;
     padding: 6px 0 2px 0;
   }
+
   .music-player-title {
     font-size: 0.97rem;
   }
+
   .tony-settings-bar {
     margin-top: 56px;
   }
 }
+
 .tony-settings-bar {
   width: 100vw;
   display: flex;
@@ -44,6 +49,7 @@
   position: relative;
   z-index: 10;
 }
+
 .tony-settings-bar-btn {
   background: none;
   border: none;
@@ -51,9 +57,11 @@
   padding: 0;
   transition: transform 0.15s;
 }
+
 .tony-settings-bar-btn:hover {
   transform: scale(1.12) rotate(-8deg);
 }
+
 .tony-quote {
   font-size: 1.15rem;
   color: #b97a56;
@@ -64,15 +72,24 @@
   letter-spacing: 0.5px;
   animation: tony-quote-fade 2s;
 }
+
 @keyframes tony-quote-fade {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .tony-animated {
-  transition: transform 0.25s cubic-bezier(.68,-0.55,.27,1.55), color 0.25s;
+  transition: transform 0.25s cubic-bezier(.68, -0.55, .27, 1.55), color 0.25s;
   cursor: pointer;
 }
+
 .tony-animated:hover {
   color: #ffb347;
   transform: scale(1.08) rotate(-2deg);
@@ -87,6 +104,7 @@
   font-family: inherit;
   letter-spacing: 1px;
 }
+
 /* Tema Tony Pitony per la home */
 .home.tony-theme {
   min-height: 100vh;
@@ -100,36 +118,46 @@
   font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
   box-sizing: border-box;
 }
+
 @media (max-width: 600px) {
   .home.tony-theme {
     padding: 0 2vw 0 2vw;
   }
+
   .tony-img {
     width: 140px;
     margin-top: 0.5em;
   }
+
   .tony-title {
     font-size: 2.1rem;
   }
+
   .tony-sub {
     font-size: 1.05rem;
   }
+
   .tony-card {
     padding: 18px 6px 14px 6px;
     max-width: 98vw;
   }
-  .tony-btn, .tony-btn-secondary {
+
+  .tony-btn,
+  .tony-btn-secondary {
     font-size: 1.01rem;
     padding: 8px 12px;
   }
+
   .tony-footer {
     font-size: 0.98rem;
   }
+
   .tony-modal {
     min-width: 90vw;
     padding: 18px 4vw 12px 4vw;
   }
 }
+
 .tony-img {
   width: 220px;
   max-width: 80vw;
@@ -137,12 +165,21 @@
   margin-top: 5em;
   z-index: 1;
   filter: drop-shadow(0 8px 32px #b97a56cc);
-  animation: tony-bounce 2.5s infinite cubic-bezier(.68,-0.55,.27,1.55);
+  animation: tony-bounce 2.5s infinite cubic-bezier(.68, -0.55, .27, 1.55);
 }
+
 @keyframes tony-bounce {
-  0%, 100% { transform: translateY(0) rotate(-5deg); }
-  50% { transform: translateY(-18px) rotate(5deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(5deg);
+  }
 }
+
 .tony-title {
   font-size: 3.2rem;
   color: #b97a56;
@@ -151,6 +188,7 @@
   text-shadow: 0 2px 12px #fff6, 0 6px 24px #b97a56cc;
   margin-bottom: 0.2em;
 }
+
 .tony-sub {
   color: #7a4a17;
   font-size: 1.3rem;
@@ -158,6 +196,7 @@
   font-weight: 600;
   letter-spacing: 1px;
 }
+
 .tony-card {
   background: #fffbe6;
   border-radius: 18px;
@@ -167,12 +206,14 @@
   max-width: 400px;
   width: 95vw;
 }
+
 .tony-actions {
   display: flex;
   gap: 18px;
   justify-content: center;
   flex-direction: row;
 }
+
 .tony-btn {
   background: linear-gradient(90deg, #b97a56 0%, #ffb347 100%);
   color: #fff;
@@ -185,11 +226,13 @@
   transition: background 0.2s, transform 0.2s;
   cursor: pointer;
 }
+
 .tony-btn:hover {
   background: linear-gradient(90deg, #ffb347 0%, #b97a56 100%);
   color: #fffbe6;
   transform: scale(1.06) rotate(-2deg);
 }
+
 .tony-btn-secondary {
   background: #fffbe6;
   color: #b97a56;
@@ -200,16 +243,19 @@
   padding: 12px 32px;
   transition: background 0.2s, color 0.2s;
 }
+
 .tony-btn-secondary:hover {
   background: #ffe259;
   color: #7a4a17;
 }
+
 .tony-nome-box {
   margin-top: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .tony-nome-box input[type="text"] {
   padding: 10px 18px;
   border-radius: 8px;
@@ -223,9 +269,11 @@
   width: 220px;
   max-width: 80vw;
 }
+
 .tony-nome-box input[type="text"]:focus {
   border: 2.5px solid #ffb347;
 }
+
 .tony-btn-save {
   background: #b97a56;
   color: #fffbe6;
@@ -237,6 +285,7 @@
   transition: background 0.2s;
   cursor: pointer;
 }
+
 .tony-btn-save:hover {
   background: #ffb347;
   color: #7a4a17;
@@ -255,9 +304,11 @@
   padding: 0;
   transition: transform 0.15s;
 }
+
 .tony-settings-btn:hover {
   transform: scale(1.12) rotate(-8deg);
 }
+
 .tony-settings-left {
   left: 24px;
   right: auto;
@@ -266,7 +317,10 @@
 /* Overlay modal*/
 .tony-modal-bg {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(255, 255, 255, 0.15);
@@ -276,9 +330,15 @@
   justify-content: center;
   animation: tony-modal-fadein 0.2s;
 }
+
 @keyframes tony-modal-fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .tony-modal {
@@ -294,15 +354,25 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  animation: tony-modal-pop 0.22s cubic-bezier(.68,-0.55,.27,1.55);
+  animation: tony-modal-pop 0.22s cubic-bezier(.68, -0.55, .27, 1.55);
 }
+
 @keyframes tony-modal-pop {
-  from { transform: scale(0.85) translateY(40px); opacity: 0; }
-  to { transform: scale(1) translateY(0); opacity: 1; }
+  from {
+    transform: scale(0.85) translateY(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }
+
 .tony-modal-section {
   margin-bottom: 18px;
 }
+
 .tony-btn-close {
   background: #b97a56;
   color: #fffbe6;
@@ -316,6 +386,7 @@
   margin-top: 8px;
   align-self: flex-end;
 }
+
 .tony-btn-close:hover {
   background: #ffb347;
   color: #7a4a17;
@@ -325,6 +396,7 @@
 .tony-modal {
   color: #7a4a17;
 }
+
 .tony-modal h2 {
   color: #b97a56;
   font-size: 2rem;
@@ -334,6 +406,7 @@
   letter-spacing: 1px;
   text-shadow: 0 2px 8px #fff8;
 }
+
 .tony-modal label {
   color: #b97a56;
   font-weight: 700;
@@ -341,6 +414,7 @@
   margin-bottom: 4px;
   display: block;
 }
+
 .tony-modal input[type="text"] {
   background: #fff;
   color: #7a4a17;
@@ -352,9 +426,11 @@
   outline: none;
   font-family: inherit;
 }
+
 .tony-modal input[type="text"]:focus {
   border: 2.5px solid #ffb347;
 }
+
 .tony-btn-gen {
   background: #fffbe6;
   border: 2px solid #b97a56;
@@ -369,18 +445,22 @@
   align-items: center;
   justify-content: center;
 }
+
 .tony-btn-gen:hover {
   background: #ffb347;
   color: #fffbe6;
 }
-.tony-modal input[type="checkbox"]:checked + span,
+
+.tony-modal input[type="checkbox"]:checked+span,
 .tony-modal input[type="checkbox"]:checked {
   accent-color: #b97a56;
 }
+
 .tony-modal em {
   color: #b97a56;
   opacity: 0.7;
 }
+
 .tony-modal ::placeholder {
   color: #b97a56bb;
   opacity: 1;
@@ -388,4 +468,42 @@
 
 .home.tony-theme {
   position: relative;
+}
+
+@media (max-width: 600px) {
+  .tony-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .tony-btn,
+  .tony-btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .tony-card {
+    width: min(94vw, 400px);
+  }
+
+  .tony-img {
+    width: clamp(120px, 42vw, 180px);
+    margin-top: 2.5em;
+  }
+
+  .tony-title {
+    font-size: clamp(2rem, 11vw, 3rem);
+    line-height: 1;
+  }
+
+  .tony-sub {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+  }
+
+  .tony-quote {
+    font-size: 1rem;
+    padding: 0 12px;
+  }
 }
