@@ -1,8 +1,8 @@
 import React from "react";
-import MusicPlayer from "../components/MusicPlayer";
-import SettingsModal from "../components/SettingsModal";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
+import MusicPlayer from "../components/MusicPlayer";
+import SettingsModal from "../components/SettingsModal";
 import { SettingsProvider, useSettings } from "./SettingsContext";
 
 function AppShell() {
