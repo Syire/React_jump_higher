@@ -1,22 +1,26 @@
+import React from "react";
+import MusicPlayer from "../components/MusicPlayer";
+import SettingsModal from "../components/SettingsModal";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router";
+import { SettingsProvider, useSettings } from "./SettingsContext";
 
-import React, { useState, createContext } from 'react';
-import MusicPlayer from '../components/MusicPlayer';
-import { RouterProvider } from 'react-router-dom';
-import { router } from './router';
+function AppShell() {
+  const { musicOn } = useSettings();
 
-
-// @ts-ignore
-export const MusicContext = createContext({
-  musicOn: false,
-  setMusicOn: () => {},
-});
+  return (
+    <>
+      <MusicPlayer musicOn={musicOn} />
+      <SettingsModal />
+      <RouterProvider router={router} />
+    </>
+  );
+}
 
 export default function App() {
-  const [musicOn, setMusicOn] = useState(false);
   return (
-    <MusicContext.Provider value={{ musicOn, setMusicOn }}>
-      <MusicPlayer musicOn={musicOn} />
-      <RouterProvider router={router} />
-    </MusicContext.Provider>
+    <SettingsProvider>
+      <AppShell />
+    </SettingsProvider>
   );
 }
