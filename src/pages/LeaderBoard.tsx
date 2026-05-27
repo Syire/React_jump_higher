@@ -12,7 +12,14 @@ function getRankClassName(rank: number) {
     if (rank === 2) return "leaderboard-rank--second";
     if (rank === 3) return "leaderboard-rank--third";
 
-    return "";
+    return "leaderboard-rank--default";
+}
+function getRowRankClassName(rank: number) {
+    if (rank === 1) return "leaderboard-row--first-place";
+    if (rank === 2) return "leaderboard-row--second-place";
+    if (rank === 3) return "leaderboard-row--third-place";
+
+    return "leaderboard-row--default-place";
 }
 
 export default function Leaderboard() {
@@ -134,7 +141,7 @@ export default function Leaderboard() {
                                                         key={
                                                             score.id ?? `${score.name}-${score.score}-${rank}`
                                                         }
-                                                        className={`leaderboard-row${isPodium ? " leaderboard-row--podium" : ""
+                                                        className={`leaderboard-row ${getRowRankClassName(rank)}${isPodium ? " leaderboard-row--podium" : ""
                                                             }${isCurrentPlayer
                                                                 ? " leaderboard-row--current-player"
                                                                 : ""
