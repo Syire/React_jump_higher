@@ -6,7 +6,6 @@ import "./css/LeaderBoard.css";
 
 const podiumIcons = ["👑", "🥈", "🥉"];
 
-const SCORES_LIMIT = 50;
 const SCORES_PER_PAGE = 5;
 
 export default function Leaderboard() {
@@ -16,7 +15,7 @@ export default function Leaderboard() {
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    getTopScores(SCORES_LIMIT)
+    getTopScores()
       .then((data) => {
         setScores(data);
         setCurrentPage(0);
